@@ -16,7 +16,7 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
     <title>WeTeach - A Course Platform for Developers, built by Developers</title>
     <style>
         .gradient {
