@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('home');
 });
+Auth::routes();
+
+Route::get('/logout', function () {
+    \Auth::logout();
+    return redirect('/');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('dashboard', function () {
+        echo 'Welcome to your dashboard \n';
+        echo '<a href="/logout">Logout</a>';
+    });
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
