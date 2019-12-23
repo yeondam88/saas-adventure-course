@@ -14,14 +14,14 @@
 Route::get('/', function () {
     return view('home');
 });
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/logout', function () {
     \Auth::logout();
     return redirect('/');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('dashboard', function () {
         echo 'Welcome to your dashboard \n';
         echo '<a href="/logout">Logout</a>';
