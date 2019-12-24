@@ -11461,6 +11461,10 @@ video {
  * @import "utilities/skew-transforms";
  */
 
+#menu-toggle:checked+#menu {
+  display: block;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

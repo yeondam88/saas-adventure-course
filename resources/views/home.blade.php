@@ -3,8 +3,6 @@
 @section('title', 'WeTeach - A Course Platform for Developers, built by Developers')
 
 @section('content')
-<!-- top color bar -->
-<div class="h-2 bg-indigo-600 w-full absolute z-20 gradient"></div>
 
 
 @include('partials.nav')
