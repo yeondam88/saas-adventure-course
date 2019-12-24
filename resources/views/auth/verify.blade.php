@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-HTMLResult
+@include('partials.nav')
 <div class="flex h-screen bg-gray-200 p-4 rotate">
     <div class="sm:max-w-xl md:max-w-2xl w-full m-auto">
 
@@ -46,7 +46,4 @@ HTMLResult
         </div>
     </div>
 </div>
-
-
-Resources1×0.5×0.25×Rerun
 @endsection

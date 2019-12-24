@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+@include('partials.nav')
 <div class="container mx-auto">
     <div class="flex flex-wrap justify-center">
         <div class="w-full max-w-sm">

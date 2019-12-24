@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+@include('partials.nav')
 <div class="flex h-screen bg-gray-200 p-4 rotate">
     <div class="sm:max-w-xl md:max-w-2xl w-full m-auto">
 

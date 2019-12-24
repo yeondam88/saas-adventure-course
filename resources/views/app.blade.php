@@ -25,7 +25,7 @@
   </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-gray-200">
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-56VJRTG" height="0" width="0"

@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+@include('partials.nav')
 <div class="flex h-screen bg-gray-200 p-4 rotate">
     <div class="sm:max-w-xl md:max-w-2xl w-full m-auto">
         <form method="POST" action="{{ route('register') }}"
@@ -25,7 +26,7 @@
 
                 <input id="name" type="text"
                     class="px-3 w-full py-2 bg-gray-200 border border-gray-200 rounded focus:border-gray-400 focus:outline-none focus:bg-white mb-4 {{ $errors->has('name') ? ' border-red-500' : '' }}"
-                    name="name" value="" required autofocus placeholder="Name">
+                    name="name" value="{{ old('name') }}" required autofocus placeholder="Name">
                 @if ($errors->has('name'))
                 <p class="text-red-500 text-xs italic mt-4">
                     {{ $errors->first('name') }}
@@ -34,7 +35,7 @@
 
                 <input id="email" type="email"
                     class="px-3 w-full py-2 bg-gray-200 border border-gray-200 rounded focus:border-gray-400 focus:outline-none focus:bg-white mb-4 {{ $errors->has('email') ? ' border-red-500' : '' }}"
-                    name="email" value="" required placeholder="Email Address">
+                    name="email" value="{{ old('email') }}" required placeholder="Email Address">
                 @if ($errors->has('email'))
                 <p class="text-red-500 text-xs italic mt-4">
                     {{ $errors->first('email') }}
