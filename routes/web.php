@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::redirect('settings', 'settings/profile')->name('settings');
     Route::get("settings/profile", 'DashboardController@profile')->name('profile');
     Route::post("settings/profile", 'DashboardController@profile_save')->name('profile.save');
-    Route::get("settings/security", 'DashboardController@security')->name('profile');
+    Route::get("settings/security", 'DashboardController@security')->name('security');
     Route::post("settings/security", 'DashboardController@security_save')->name('security.save');
     Route::get("settings/billing", 'DashboardController@billing')->name('billing');
     Route::post("settings/billing", 'DashboardController@billing_save')->name('billing.save');

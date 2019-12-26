@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
     public function billing (Request $request)
     {
-        return view('settings.profile');
+        return view('settings.billing');
     }
 
     public function billing_save(Request $request)

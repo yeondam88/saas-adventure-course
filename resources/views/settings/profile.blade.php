@@ -11,14 +11,8 @@
     @if (session('alert'))
     <p>{{ session('alert') }}</p>
     @endif
-
     <h1 class="text-2xl font-bold text-gray-700 px-6 md:px-0">Profile Settings</h1>
-    <ul class="flex border-b border-gray-300 text-sm font-medium text-gray-600 mt-3 px-6 md:px-0">
-      <li class="mr-8 text-gray-900 border-b-2 border-gray-800"><a href="#_" class="py-4 inline-block">Profile Info</a>
-      </li>
-      <li class="mr-8 hover:text-gray-900"><a href="#_" class="py-4 inline-block">Security</a></li>
-      <li class="mr-8 hover:text-gray-900"><a href="#_" class="py-4 inline-block">Billing</a></li>
-    </ul>
+    @include('settings.nav')
     <form action="{{ route('profile.save') }}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="w-full bg-white rounded-lg mx-auto mt-8 flex overflow-hidden rounded-b-none">
