@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -36,4 +37,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getPhotoAttribute($value)
+    {
+        if (is_null($value)) {
+            return 'https://api.adorable.io/avatars/285/abott@adorable.png';
+        } else {
+            // return uploaded photo
+            return Storage::url('public/images/user/' . $value);
+        }
+    }
 }

@@ -26,7 +26,7 @@
         </nav>
         <a href="#" class="lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor" id="userdropdown">
           <img class="rounded-full w-10 h-10 border-2 border-transparent hover:border-pink-400 ignore-body-click"
-            src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="avatar">
+        src="{{ auth()->user()->photo }}" alt="avatar">
         </a>
         <div id="usermenu"
           class="absolute lg:mt-12 pt-1 z-40 left-0 lg:left-auto lg:right-0 lg:top-0 invisible lg:w-auto w-full">
