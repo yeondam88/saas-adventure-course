@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
@@ -19,26 +21,33 @@ class DashboardController extends Controller
 
     public function profile_save(Request $request)
     {
-        // $user = auth()->user();
-        // // validate the response
-        // $user->name = $request->name;
-        // $user->email = $request->email;
+        $user = auth()->user();
+        // validate the response
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+        ]);
 
-        // $photo = $request->photo;
-        // $filename = Str::slug($request->name) . '-' . uniqid() . '.' . $photo->extension();
-        // $photo->storeAs('public/images/user', $filename);
+        $user->name = $request->name;
+        $user->email = $request->email;
 
-        // $user->photo = $filename;
+        $photo = $request->photo;
 
-        // $user->save();
+        if ($request->hasFile('photo')) {
+            $request->validate([
+                'photo' => 'image|mimes:jpeg,jpg,png'
+            ]);
+            $filename = Str::slug($request->name) . '-' . uniqid() . '.' . $photo->extension();
+            $photo->storeAs('public/images/user', $filename);
+            $user->photo = $filename;
+        }
 
-        // info
-        // success
-        // error
-        // warning
+        $user->save();
 
-        return back()->with(['alert' => 'Successfully updated your profile info', 'alert_type' => 'warning']);
-        // save the user info
+        return back()->with(['alert' => 'Successfully updated your profile info', 'alert_type' => 'success']);
     }
 
     public function security(Request $request)
@@ -48,7 +57,15 @@ class DashboardController extends Controller
 
     public function security_save(Request $request)
     {
-        echo 'Successfully updated your password';
+        $user = auth()->user();
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return back()->with(['alert' => 'Successfully updated your password', 'alert_type' => 'success']);
     }
 
     public function billing (Request $request)

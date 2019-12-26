@@ -6,22 +6,6 @@
 
 <div class="bg-gray-200 min-h-screen pb-24">
   @include('partials.dashboard-header')
-  @if (session('alert'))
-  <div class="container mx-auto max-w-3xl mt-8">
-    @php $alert_type = session('alert_type'); @endphp
-    <div class="
-      @if($alert_type == 'info'){{'bg-blue-400 border-l-4 border-blue-500'}}
-      @elseif($alert_type == 'success'){{ 'bg-green-400 border-l-4 border-green-500' }}
-      @elseif($alert_type == 'error'){{ 'bg-red-400 border-l-4 border-red-500' }}
-      @elseif($alert_type == 'warning'){{ 'bg-orange-400 border-l-4 border-orange-500' }}
-      @endif
-      text-white p-4" role="alert">
-      <p class="font-bold">{{ ucfirst(session('alert_type')) }}</p>
-      <p>{{ session('alert') }}</p>
-    </div>
-    <p></p>
-  </div>
-  @endif
   <div class="container mx-auto max-w-3xl mt-8">
 
     

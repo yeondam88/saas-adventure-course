@@ -19266,6 +19266,12 @@ if (document.getElementById("userdropdown")) {
   });
 }
 
+if (document.querySelector('.alert')) {
+  setTimeout(function () {
+    document.querySelector('.alert').remove();
+  }, 3000);
+}
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

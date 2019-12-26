@@ -40,3 +40,35 @@
       </div>
 
 </header>
+
+@if ($errors->any())
+<div class="container mx-auto max-w-3xl mt-8 alert">
+  <div class="bg-red-400 border-l-4 border-red-500 text-white p-4" role="alert">
+    <p class="font-bold">Please fix the following errors</p>
+    <ul class="list-disc ml-8">
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  <p></p>
+</div>  
+@endif
+
+
+@if (session('alert'))
+<div class="container mx-auto max-w-3xl mt-8 alert">
+  @php $alert_type = session('alert_type'); @endphp
+  <div class="
+    @if($alert_type == 'info'){{'bg-blue-400 border-l-4 border-blue-500'}}
+    @elseif($alert_type == 'success'){{ 'bg-green-400 border-l-4 border-green-500' }}
+    @elseif($alert_type == 'error'){{ 'bg-red-400 border-l-4 border-red-500' }}
+    @elseif($alert_type == 'warning'){{ 'bg-orange-400 border-l-4 border-orange-500' }}
+    @endif
+    text-white p-4" role="alert">
+    <p class="font-bold">{{ ucfirst(session('alert_type')) }}</p>
+    <p>{{ session('alert') }}</p>
+  </div>
+  <p></p>
+</div>
+@endif
