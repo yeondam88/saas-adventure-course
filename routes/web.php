@@ -12,8 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
+<<<<<<< HEAD
 Auth::routes(['verify' => true]);
 
 Route::get('/logout', function () {
@@ -34,3 +35,5 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+=======
+>>>>>>> bebdf1cf294e7067d2be1010f33e0f189f44f6c0

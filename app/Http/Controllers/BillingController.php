@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class BillingController extends Controller
 {
+<<<<<<< HEAD
   public function billing(Request $request)
   {
     return view('settings.billing');
@@ -27,3 +28,7 @@ class BillingController extends Controller
     return back()->with(['alert' => 'Successfully updated your billing info', 'alert_type' => 'success']);
   }
 }
+=======
+    //
+}
+>>>>>>> bebdf1cf294e7067d2be1010f33e0f189f44f6c0
