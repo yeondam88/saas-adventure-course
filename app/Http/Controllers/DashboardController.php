@@ -67,15 +67,4 @@ class DashboardController extends Controller
 
         return back()->with(['alert' => 'Successfully updated your password', 'alert_type' => 'success']);
     }
-
-    public function billing (Request $request)
-    {
-        return view('settings.billing');
-    }
-
-    public function billing_save(Request $request)
-    {
-        echo 'Successfully updated your billing info';
-    }
-    
 }
