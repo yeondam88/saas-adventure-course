@@ -12,12 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-<<<<<<< HEAD
-Auth::routes(['verify' => true]);
 
-Route::get('/logout', function () {
+Route::get('logout', function () {
     \Auth::logout();
     return redirect('/');
 });
@@ -25,15 +23,16 @@ Route::get('/logout', function () {
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 
+    // Dashboard Setting Routes
     Route::redirect('settings', 'settings/profile')->name('settings');
-    Route::get("settings/profile", 'DashboardController@profile')->name('profile');
-    Route::post("settings/profile", 'DashboardController@profile_save')->name('profile.save');
-    Route::get("settings/security", 'DashboardController@security')->name('security');
-    Route::post("settings/security", 'DashboardController@security_save')->name('security.save');
-    Route::get("settings/billing", 'BillingController@billing')->name('billing');
-    Route::post("settings/billing", 'BillingController@billing_save')->name('billing.save');
+    Route::get('settings/profile', 'DashboardController@profile')->name('profile');
+    Route::post('settings/profile', 'DashboardController@profile_save')->name('profile.save');
+    Route::get('settings/security', 'DashboardController@security')->name('security');
+    Route::post('settings/security', 'DashboardController@security_save')->name('security.save');
+    Route::get('settings/billing', 'BillingController@billing')->name('billing');
+    Route::post('settings/billing', 'BillingController@billing_save')->name('billing.save');
 });
 
+Auth::routes(['verify' => true]);
+
 Route::get('/home', 'HomeController@index')->name('home');
-=======
->>>>>>> bebdf1cf294e7067d2be1010f33e0f189f44f6c0
