@@ -48,4 +48,9 @@ class User extends Authenticatable implements MustVerifyEmail
             return Storage::url('public/images/user/' . $value);
         }
     }
+
+    public function plan()
+    {
+        return $this->belongsTo('App\Plan');
+    }
 }
