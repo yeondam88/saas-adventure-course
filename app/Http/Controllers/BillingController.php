@@ -21,10 +21,6 @@ class BillingController extends Controller
       if ($user->subscribed('main')) {
         // update their credit card
         $user->updateDefaultPaymentMethod($request->payment_method);
-        $plan = Plan::where('name', '=', $request->plan)->first();
-        $user->plan_id = $plan->id;
-        $user->save();
-        
       } else {
         $plan = Plan::where('name', '=', $request->plan)->first();
         $user->plan_id = $plan->id;
@@ -37,5 +33,21 @@ class BillingController extends Controller
     }
 
     return back()->with(['alert' => 'Successfully updated your billing info', 'alert_type' => 'success']);
+  }
+
+  public function switch_plan(Request $request)
+  {
+    $plan = Plan::where('name', '=', $request->plan)->first();
+    $user = auth()->user();
+
+    try {
+      $user->subscription('main')->swap($request->plan);
+      $user->plan_id = $plan->id;
+      $user->save();
+    } catch(Exception $e) {
+      return back()->with(['alert' => 'Sorry, there was an error switching plans', 'alert_type' => 'error']);
+    }
+
+    return back()->with(['alert' => 'Successfully switched your plan to ' . strtoupper($plan->name), 'alert_type' => 'success']);
   }
 }

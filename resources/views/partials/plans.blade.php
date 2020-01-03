@@ -1,4 +1,4 @@
-<p class="text-sm text-gray-600 mb-4">Select a Plan</p>
+
 @foreach($plans as $plan)
   <input type="radio" id="{{ ucfirst($plan->name) }}-plan" value="{{ $plan->name }}" name="plan" @if($loop->first) checked @endif class="radio-plan hidden"/>
   <label for="{{ ucfirst($plan->name) }}-plan" class="border-2 border-gray-300 w-full px-4 py-3 block rounded-lg cursor-pointer mb-3 block">

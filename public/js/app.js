@@ -19266,12 +19266,6 @@ if (document.getElementById("userdropdown")) {
   });
 }
 
-if (document.querySelector(".alert")) {
-  setTimeout(function () {
-    document.querySelector(".alert").remove();
-  }, 3000);
-}
-
 if (document.getElementById('switch-plan-btn')) {
   document.getElementById("switch-plan-btn").addEventListener("click", function () {
     document.getElementById('switch-plans-modal').style.display = 'block';
