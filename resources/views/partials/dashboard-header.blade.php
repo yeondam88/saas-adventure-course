@@ -29,8 +29,12 @@
         </nav>
         <a href="#" class="group lg:ml-4 flex items-center justify-start lg:mb-0 mb-4 pointer-cursor border-l border-gray-300 pl-6"
           id="userdropdown">
-          <p class="font-bold text-xs pr-2 text-gray-700 text-right ignore-body-click">{{ auth()->user()->name }}<br><span
-            class="text-xs text-indigo-600 ignore-body-click">{{ ucfirst(auth()->user()->plan->name) }} Plan</span></p>
+          <p class="font-bold text-xs pr-2 text-gray-700 text-right ignore-body-click">{{ auth()->user()->name }}<br>
+            @if (auth()->user()->onTrial())
+            <span class="text-xs text-teal-500 ignore-body-click">Trial Period</span></p>
+            @else
+              <span class="text-xs text-indigo-600 ignore-body-click">{{ ucfirst(auth()->user()->plan->name) }} Plan</span></p>
+            @endif
           <img class="rounded-full w-10 h-10 border-2 border-transparent group-hover:border-pink-400 ignore-body-click"
             src="{{ auth()->user()->photo }}" alt="avatar">
         </a>

@@ -15,6 +15,7 @@
     <h1 class="text-2xl font-bold text-gray-700 px-6 md:px-0">Billing Settings</h1>
     @include('settings.nav')
 
+    @if(auth()->user()->subscribed('main'))
     <div id="switch-plans-modal" class="fixed w-full h-full inset-0 z-50">
       <div class="fixed opacity-50 bg-black inset-0 w-full h-full"></div>
       <form method="POST" action="{{ route('billing.switch_plan') }}" class="absolute bg-white rounded-lg p-5" id="switch-plans">
@@ -28,6 +29,7 @@
         </button>
       </form>
     </div>
+    @endif
 
     <form action="{{ route('billing.save') }}" id="billing-form" method="POST" enctype="multipart/form-data">
       @csrf
@@ -58,6 +60,15 @@
           </div>
           <hr class="border-gray-300" />
           @endif
+
+          @if(auth()->user()->onTrial())
+            <div class="py-8 px-16">
+              @include('partials.trial_notification')
+              <p class="text-sm text-gray-500 mt-2">Subscribe to a Plan Below:</p>
+            </div>
+            <hr class="border-gray-300" />
+          @endif
+
           <div class="py-8 px-16">
             <label for="card-holder-name" class="text-sm text-gray-600">Name on Card</label>
             <input
