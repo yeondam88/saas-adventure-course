@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth', 'verified', 'subscriber']], function () {
     Route::get('settings/security', 'DashboardController@security')->name('security');
     Route::post('settings/security', 'DashboardController@security_save')->name('security.save');
     Route::post('settings/billing/switch_plan', 'BillingController@switch_plan')->name('billing.switch_plan');
+    Route::get('settings/invoices', 'DashboardController@invoices')->name('invoices');
+    Route::get('settings/invoices/download/{invoice}', 'DashboardController@invoices_download')->name('invoices.download');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

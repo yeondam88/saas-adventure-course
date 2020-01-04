@@ -67,4 +67,18 @@ class DashboardController extends Controller
 
         return back()->with(['alert' => 'Successfully updated your password', 'alert_type' => 'success']);
     }
+
+    public function invoices(Request $request)
+    {
+        $invoices = auth()->user()->invoices();
+        return view('settings.invoices', compact('invoices'));
+    }
+
+    public function invoices_download(Request $request, $invoiceId)
+    {
+        return $request->user()->downloadInvoice($invoiceId, [
+            'vendor' => 'WeTeach',
+            'product' => 'WeTeach Subscription'
+        ]);
+    }
 }
