@@ -11837,7 +11837,7 @@ video {
   display: block;
 }
 
-.radio-plan:checked + label {
+.radio-plan:checked+label {
   border-color: #5a67d8;
 }
 
@@ -11852,6 +11852,41 @@ video {
   top: 50%;
   margin-left: -250px;
   margin-top: -200px;
+}
+
+.wt-input {
+  margin-top: 0.5rem;
+  border-width: 2px;
+  border-color: #edf2f7;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #1a202c;
+}
+
+.wt-input:focus {
+  outline: 0;
+  border-color: #667eea;
+}
+
+.wt-button {
+  background-color: #667eea;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  float: right;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 @media (min-width: 640px) {

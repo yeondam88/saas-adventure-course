@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth', 'verified', 'subscriber']], function () {
     Route::get('settings/invoices/download/{invoice}', 'DashboardController@invoices_download')->name('invoices.download');
     Route::get('settings/billing/cancel', 'BillingController@cancel')->name('cancel');
     Route::get('settings/billing/resume', 'BillingController@resume')->name('resume');
+
+    Route::view('support', 'support')->name('support');
+    Route::post('support', 'supportController@send')->name('support.send');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
