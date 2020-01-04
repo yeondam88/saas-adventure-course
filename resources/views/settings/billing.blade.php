@@ -8,10 +8,6 @@
   @include('partials.dashboard-header')
   <div class="container mx-auto max-w-3xl mt-8">
 
-    @if (session('alert'))
-    <p>{{ session('alert') }}</p>
-    @endif
-
     <h1 class="text-2xl font-bold text-gray-700 px-6 md:px-0">Billing Settings</h1>
     @include('settings.nav')
 
@@ -41,24 +37,24 @@
         </div>
         <div class="md:w-2/3 w-full">
           @if(auth()->user()->subscribed('main'))
-          <div class="py-8 px-16">
-            <div class="flex">
-              <img src="/img/plans/{{ auth()->user()->plan->name }}.png" class="w-16 h-16 mr-3" />
-              <div>
-                <span class="block">Subscribed to {{ ucfirst(auth()->user()->plan->name) }}</span>
-                <span class="text-xs text-gray-700">{{ auth()->user()->plan->description }}</span>
+            <div class="py-8 px-16">
+              <div class="flex">
+                <img src="/img/plans/{{ auth()->user()->plan->name }}.png" class="w-16 h-16 mr-3" />
+                <div>
+                  <span class="block">Subscribed to {{ ucfirst(auth()->user()->plan->name) }}</span>
+                  <span class="text-xs text-gray-700">{{ auth()->user()->plan->description }}</span>
+                </div>
+              </div>
+              <div id="switch-plan-btn" class="bg-gray-300 text-gray-600 text-sm font-medium px-6 py-2 rounded uppercase cursor-pointer inline-block mt-4">
+                Switch My Plan
               </div>
             </div>
-            <div id="switch-plan-btn" class="bg-gray-300 text-gray-600 text-sm font-medium px-6 py-2 rounded uppercase cursor-pointer inline-block mt-4">
-              Switch My Plan
+            <hr class="border-gray-300" />
+            <div class="py-8 px-16">
+              <div class="text-xs text-blue-600">your default payment method ends in {{ auth()->user()->card_last_four }}</div>
+              <div class="text-xs text-gray-500">To update your default payment method, add a new card below:</div>
             </div>
-          </div>
-          <hr class="border-gray-300" />
-          <div class="py-8 px-16">
-            <div class="text-xs text-blue-600">your default payment method ends in {{ auth()->user()->card_last_four }}</div>
-            <div class="text-xs text-gray-500">To update your default payment method, add a new card below:</div>
-          </div>
-          <hr class="border-gray-300" />
+            <hr class="border-gray-300" />
           @endif
 
           @if(auth()->user()->onTrial())
