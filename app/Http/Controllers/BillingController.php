@@ -25,9 +25,7 @@ class BillingController extends Controller
             } else {
                 $plan = Plan::where('name', '=', $request->plan)->first();
                 $user->plan_id = $plan->id;
-                if ($user->trial_ends_at->gt(Carbon::now())) {
-                    $user->trial_ends_at = null;
-                }
+                $user->trial_ends_at = null;
                 $user->save();
                 $user->newSubscription('main', $request->plan)->create($request->payment_method);
             }
@@ -52,5 +50,17 @@ class BillingController extends Controller
         }
 
         return back()->with(['alert' => 'Successfully switched your plan to ' . strtoupper($plan->name), 'alert_type' => 'success']);
+    }
+
+    public function cancel(Request $request)
+    {
+        auth()->user()->subscription('main')->cancel();
+        return back()->with(['alert' => 'Successfully cancelled your subscription ', 'alert_type' => 'success']);
+    }
+
+    public function resume(Request $request)
+    {
+        auth()->user()->subscription('main')->resume();
+        return back()->with(['alert' => 'Successfully resume your subscription ', 'alert_type' => 'success']);
     }
 }

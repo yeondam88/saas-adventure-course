@@ -14,12 +14,16 @@
     @if(auth()->user()->subscribed('main'))
     <div id="switch-plans-modal" class="fixed w-full h-full inset-0 z-50">
       <div class="fixed opacity-50 bg-black inset-0 w-full h-full"></div>
-      <form method="POST" action="{{ route('billing.switch_plan') }}" class="absolute bg-white rounded-lg p-5" id="switch-plans">
+      <form method="POST" action="{{ route('billing.switch_plan') }}" class="absolute bg-white rounded-lg p-5"
+        id="switch-plans">
         @csrf
-        <div id="switch-plans-close" class="absolute right-0 top-0 -mt-4 -mr-4 w-8 h-8 rounded-full shadow bg-white text-center flex justify-center items-center text-xl font-bold cursor-pointer">&times;</div>
+        <div id="switch-plans-close"
+          class="absolute right-0 top-0 -mt-4 -mr-4 w-8 h-8 rounded-full shadow bg-white text-center flex justify-center items-center text-xl font-bold cursor-pointer">
+          &times;</div>
         <p class="text-sm text-gray-600 mb-4">Switch Plan</p>
         @include('partials.plans')
-        <button class="bg-indigo-500 text-white text-sm font-medium px-6 py-2 rounded float-right uppercase cursor-pointer"
+        <button
+          class="bg-indigo-500 text-white text-sm font-medium px-6 py-2 rounded float-right uppercase cursor-pointer"
           type="submit">
           Switch Plans
         </button>
@@ -37,32 +41,50 @@
         </div>
         <div class="md:w-2/3 w-full">
           @if(auth()->user()->subscribed('main'))
-            <div class="py-8 px-16">
-              <div class="flex">
-                <img src="/img/plans/{{ auth()->user()->plan->name }}.png" class="w-16 h-16 mr-3" />
-                <div>
-                  <span class="block">Subscribed to {{ ucfirst(auth()->user()->plan->name) }}</span>
-                  <span class="text-xs text-gray-700">{{ auth()->user()->plan->description }}</span>
-                </div>
+          <div class="py-8 px-16">
+            <div class="flex">
+              <img src="/img/plans/{{ auth()->user()->plan->name }}.png" class="w-16 h-16 mr-3" />
+              <div>
+                <span class="block">Subscribed to {{ ucfirst(auth()->user()->plan->name) }}</span>
+                <span class="text-xs text-gray-700">{{ auth()->user()->plan->description }}</span>
               </div>
-              <div id="switch-plan-btn" class="bg-gray-300 text-gray-600 text-sm font-medium px-6 py-2 rounded uppercase cursor-pointer inline-block mt-4">
+            </div>
+
+            @if(auth()->user()->subscription('main')->onGracePeriod())
+            <div class="bg-orange-500 px-5 py-2 rounded-lg text-white text-xs mt-4">
+              You have cancelled your account and your account still active unitl
+              {{ auth()->user()->subscription('main')->ends_at->toFormattedDateString() }}
+            </div>
+            <div class="flex justify-end items-end mt-4">
+              <p class="text-sm text-gray-600 mr-2">or, you can</p>
+              <a href="{{ route('resume') }}" class="text-green-500 font-medium text-sm underline">Resume your
+                Subscription</a>
+            </div>
+            @else
+            <div class="flex justify-between items-center mt-4">
+              <div id="switch-plan-btn"
+                class="bg-gray-300 text-gray-600 text-sm font-medium px-6 py-2 rounded uppercase cursor-pointer inline-block">
                 Switch My Plan
               </div>
+              <a href="{{ route('cancel') }}" class="text-red-500 text-sm underline">Cancel Subscription</a>
             </div>
-            <hr class="border-gray-300" />
-            <div class="py-8 px-16">
-              <div class="text-xs text-blue-600">your default payment method ends in {{ auth()->user()->card_last_four }}</div>
-              <div class="text-xs text-gray-500">To update your default payment method, add a new card below:</div>
+            @endif
+          </div>
+          <hr class="border-gray-300" />
+          <div class="py-8 px-16">
+            <div class="text-xs text-blue-600">your default payment method ends in {{ auth()->user()->card_last_four }}
             </div>
-            <hr class="border-gray-300" />
+            <div class="text-xs text-gray-500">To update your default payment method, add a new card below:</div>
+          </div>
+          <hr class="border-gray-300" />
           @endif
 
           @if(auth()->user()->onTrial())
-            <div class="py-8 px-16">
-              @include('partials.trial_notification')
-              <p class="text-sm text-gray-500 mt-2">Subscribe to a Plan Below:</p>
-            </div>
-            <hr class="border-gray-300" />
+          <div class="py-8 px-16">
+            @include('partials.trial_notification')
+            <p class="text-sm text-gray-500 mt-2">Subscribe to a Plan Below:</p>
+          </div>
+          <hr class="border-gray-300" />
           @endif
 
           <div class="py-8 px-16">
@@ -81,11 +103,11 @@
           </div>
 
           @if(!auth()->user()->subscribed('main'))
-            <hr class="border-gray-300" />
-            <div class="py-8 px-16">
-              <p class="text-sm text-gray-600 mb-4">Select a Plan</p>
-              @include('partials.plans')
-            </div>
+          <hr class="border-gray-300" />
+          <div class="py-8 px-16">
+            <p class="text-sm text-gray-600 mb-4">Select a Plan</p>
+            @include('partials.plans')
+          </div>
           @endif
         </div>
 
