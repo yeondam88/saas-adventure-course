@@ -11,6 +11,10 @@
 |
 */
 
+Route::domain('{subdomain}.' . env('DOMAIN'))->group(function () {
+    Route::get('/', 'CourseController@course');
+});
+
 Route::get('/', function () {
     return view('home');
 });
@@ -22,6 +26,11 @@ Route::get('logout', function () {
 
 Route::group(['middleware' => ['auth', 'verified', 'subscriber']], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+    //Course Routes
+    Route::get('courses', 'CourseController@courses')->name('courses');
+    Route::get('courses/create', 'CourseController@create');
+    Route::post('courses/create', 'CourseController@create_course')->name('courses.create');
 
     // Dashboard Setting Routes
     Route::redirect('settings', 'settings/profile')->name('settings');
