@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth', 'verified', 'subscriber']], function () {
 
     Route::view('support', 'support')->name('support');
     Route::post('support', 'supportController@send')->name('support.send');
+
+    Route::get('announcements', 'AnnouncementController@index')->name('announcements');
+    Route::get('announcement/unread', 'AnnouncementController@unread')->name('announcement.unread');
+    Route::get('announcement/{id}', 'AnnouncementController@announcement')->name('announcement');
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -47,3 +51,4 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('p/{slug}', 'PageController@page')->name('page');

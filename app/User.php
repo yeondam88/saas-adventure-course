@@ -58,4 +58,31 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo('App\Plan');
     }
+
+    public function announcements()
+    {
+        return $this->belongsToMany('App\Announcement');
+    }
+
+    public function hasUnreadAnnouncements()
+    {
+        $totalAnnouncements = \App\Announcement::count();
+        $userAnnouncements = $this->announcements()->count();
+        if ($totalAnnouncements > $userAnnouncements) {
+            return true;
+        }
+        return false;
+    }
+
+    public function unreadAnnouncements()
+    {
+        $announcements = \App\Announcement::orderBy('created_at', 'DESC')->get();
+        $unreadAnnouncements = [];
+        foreach ($announcements as $announcement) {
+            if (!$this->announcements()->where('id', $announcement->id)->exists()) {
+                array_push($unreadAnnouncements, $announcement);
+            }
+        }
+        return $unreadAnnouncements;
+    }
 }
