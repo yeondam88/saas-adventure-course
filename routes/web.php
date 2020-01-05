@@ -50,5 +50,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
 Auth::routes(['verify' => true]);
 
+// OAUTH Providers
+Route::get('login/github', 'Auth\LoginController@redirectToGithubProvider');
+Route::get('login/github/callback', 'Auth\LoginController@handleGithubProviderCallback');
+
+Route::get('login/google', 'Auth\LoginController@redirectToGoogleProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleProviderCallback');
+
+Route::get('login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleFacebookProviderCallback');
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('p/{slug}', 'PageController@page')->name('page');

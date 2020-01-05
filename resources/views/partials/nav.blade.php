@@ -21,7 +21,7 @@
       </li>
       <li>
         <a href="{{ route('login') }}"
-          class="text-white ml-4 py-2 px-6 rounded bg-gray-800 font-bold hidden sm:block bg-indigo-600">Login</a>
+          class="text-white ml-4 py-2 px-6 rounded-full bg-gray-800 font-bold hidden sm:block bg-indigo-600">Login</a>
       </li>
     </ul>
   </nav>

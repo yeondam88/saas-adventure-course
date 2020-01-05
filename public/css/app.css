@@ -11871,6 +11871,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.google-blue {
+  background: #4285f4;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;

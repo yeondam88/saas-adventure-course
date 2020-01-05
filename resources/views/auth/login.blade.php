@@ -2,8 +2,25 @@
 
 @section('content')
 @include('partials.nav')
+
 <div class="flex h-screen bg-gray-200 p-4 rotate">
     <div class="sm:max-w-xl md:max-w-2xl w-full m-auto">
+        @if (session('alert'))
+        <div class="container mx-auto max-w-3xl mt-8 mb-8 alert">
+            @php $alert_type = session('alert_type'); @endphp
+            <div class="
+    @if($alert_type == 'info'){{'bg-blue-400 border-l-4 border-blue-500'}}
+    @elseif($alert_type == 'success'){{ 'bg-green-400 border-l-4 border-green-500' }}
+    @elseif($alert_type == 'error'){{ 'bg-red-400 border-l-4 border-red-500' }}
+    @elseif($alert_type == 'warning'){{ 'bg-orange-400 border-l-4 border-orange-500' }}
+    @endif
+    text-white p-4" role="alert">
+                <p class="font-bold">{{ ucfirst(session('alert_type')) }}</p>
+                <p>{{ session('alert') }}</p>
+            </div>
+            <p></p>
+        </div>
+        @endif
         <form method="POST" action="{{ route('login') }}"
             class="flex items-stretch bg-white rounded-lg shadow-lg overflow-hidden border-t-4 border-indigo-500 sm:border-0">
             @csrf
@@ -22,7 +39,7 @@
             </div>
             <div class="flex-1 p-6 sm:p-10 sm:py-12">
                 <h3 class="text-xl text-gray-700 font-bold mb-6">
-                    Login <span class="text-gray-400 font-light">to your account</span></h3>
+                    Login <span class="text-gray-400 font-light"> with your email</span></h3>
 
                 <input id="email" type="email"
                     class="px-3 w-full py-2 bg-gray-200 border border-gray-200 rounded focus:border-gray-400 focus:outline-none focus:bg-white mb-4 {{ $errors->has('email') ? ' border-red-500' : '' }}"
@@ -40,12 +57,15 @@
                 <div class="flex flex-wrap items-center">
                     <div class="w-full sm:flex-1">
                         <input type="submit" value="Login"
-                            class="w-full sm:w-auto bg-indigo-500 text-indigo-100 px-6 py-2 rounded hover:bg-indigo-600 focus:outline-none cursor-pointer">
+                            class="w-full sm:w-auto bg-indigo-500 text-indigo-100 px-6 py-2 rounded-full hover:bg-indigo-600 focus:outline-none cursor-pointer">
                     </div>
                     <div class="text-sm text-gray-500 hover:text-gray-700 pt-4 sm:p-0">
                         <a href="{{ route('password.request') }}">Forgot password?</a>
                     </div>
                 </div>
+
+                <p class="text-gray-500 font-medium mt-8 mb-4">or login with</p>
+                @include('partials.oauth-buttons')
 
                 <p class="w-full text-xs text-left text-gray-700 mt-8">
                     Don't have an account?
