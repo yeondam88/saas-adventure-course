@@ -22,10 +22,11 @@
                     <h2 class="font-medium text-sm text-gray-500 mb-4 uppercase tracking-wide">View your courses</h2>
                 </div>
                 <div class="w-full">
-                    <a href="{{ route('courses.create') }}" class="wt-button">Add course</a>
+                    @if(auth()->user()->courses->count() > 1)<a href="{{ route('courses.create') }}"
+                        class="wt-button">Add course</a>@endif
                 </div>
             </div>
-            @if (auth()->user()->courses->count() > 1)
+            @if (auth()->user()->courses->count() >= 1)
             @foreach(auth()->user()->courses as $course)
             <div class="border border-gray-300 px-3 py-2 rounded flex justify-between my-4">
                 <span class="font-bold text-indigo-500">{{ $course->name }}</span>
