@@ -14,6 +14,11 @@
         <div class="hidden lg:flex lg:items-center lg:w-auto w-full relative" id="menu">
           <nav>
             <ul class="lg:flex items-center justify-between text-sm font-medium text-gray-700 pt-4 lg:pt-0">
+              @if(auth()->user()->user_type == 'admin')
+              <li><a
+                  class="lg:p-4 py-3 px-0 block border-b-2 border-transparent font-bold @if(Request::is('dashboard')) {{ 'text-indigo-500' }}@else{{'text-gray-600 hover:text-gray-900'}}@endif"
+                  href="{{ route("admin") }}">Admin</a></li>
+              @endif
               <li><a
                   class="lg:p-4 py-3 px-0 block border-b-2 border-transparent font-bold @if(Request::is('dashboard')) {{ 'text-indigo-500' }}@else{{'text-gray-600 hover:text-gray-900'}}@endif"
                   href="{{ route("dashboard") }}">Dashboard</a></li>

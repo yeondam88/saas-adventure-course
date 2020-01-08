@@ -52,6 +52,12 @@ Route::group(['middleware' => ['auth', 'verified', 'subscriber']], function () {
     Route::get('announcement/{id}', 'AnnouncementController@announcement')->name('announcement');
 });
 
+Route::group(['middleware' => ['auth', 'isAdmin']], function () {
+    Route::get('admin', 'AdminController@index')->name('admin');
+    Route::get('admin/notification', 'AdminController@notification')->name('admin.notification');
+    Route::post('admin/create_notification', 'AdminController@create_notification')->name('admin.create_notification');
+});
+
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('settings/billing', 'BillingController@billing')->name('billing');
     Route::post('settings/billing', 'BillingController@billing_save')->name('billing.save');
