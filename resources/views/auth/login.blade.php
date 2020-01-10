@@ -79,6 +79,4 @@
 </div>
 </div>
 
-
-Resources1×0.5×0.25×Rerun
 @endsection

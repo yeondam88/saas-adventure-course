@@ -1,28 +1,27 @@
-<div class="absolute w-full z-20">
+<div class="absolute w-full z-20 pt-4">
   <!-- Nav Bar -->
-  <nav
-    class="font-sans text-center flex justify-between my-4 mx-auto container overflow-hidden mt-8 z-50 relative px-5">
-    <a href="/"
-      class="toggleColour text-gray-700 no-underline hover:no-underline font-bold text-2xl lg:text-4xl h-6 pt-1 mx-auto sm:mx-0">
-      <img src="/img/logo.png" class="h-full mt-1" alt="We Teach Logo">
+  <nav class="w-full md:max-w-6xl md:mx-auto md:flex md:items-center md:justify-between">
+
+    <a href="/" class="py-2 text-gray-800 text-2xl font-bold h-8">
+      <img class="h-full mt-1" src="/img/logo.png" alt="weTeach">
     </a>
-    <ul class="text-sm text-grey-dark list-reset flex items-center">
-      <li class="mr-8">
-        <a href="/" class="font-semibold text-pink-500">Home</a>
-      </li>
-      <li class="mr-8">
-        <a href="/#_" class="font-semibold text-gray-900 hover:text-pink-500">Features</a>
-      </li>
-      <li class="mr-8">
-        <a href="/#_" class="font-semibold text-gray-900 hover:text-pink-500">Pricing</a>
-      </li>
-      <li class="mr-8">
-        <a href="/#_" class="font-semibold text-gray-900 hover:text-pink-500">FAQ</a>
-      </li>
-      <li>
-        <a href="{{ route('login') }}"
-          class="text-white ml-4 py-2 px-6 rounded-full bg-gray-800 font-bold hidden sm:block bg-indigo-600">Login</a>
-      </li>
-    </ul>
+
+
+    <div>
+      <div class="hidden md:block">
+        <a href="#" class="inline-block py-1 md:py-4 text-gray-600 mr-6 font-bold">How it Works</a>
+        <a href="#" class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6">Solutions</a>
+
+        <a href="#" class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6">Pricing</a>
+        <a href="#" class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6">Desktop</a>
+      </div>
+    </div>
+
+    <div class="hidden md:block">
+      <a href="{{ route('login') }}" class="inline-block py-1 md:py-4 text-gray-500 hover:text-gray-600 mr-6">Login</a>
+      <a href="#" class="inline-block py-2 px-4 text-gray-700 bg-white hover:bg-gray-100 rounded-lg">Start
+        a free
+        trial</a>
+    </div>
   </nav>
 </div>
