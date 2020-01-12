@@ -22,7 +22,7 @@
             <img class="w-10 h-10 rounded-full mr-4" src="https://tinyfac.es/images/single.png"
                 alt="Avatar of Jonathan Reinink">
             <div class="text-sm">
-                <p class="text-gray-900 leading-none">{{ $course->user_id }}</p>
+                <p class="text-gray-900 leading-none">{{ $course->user->name }}</p>
                 <p class="text-gray-600">Created at {{ $course->created_at->toFormattedDateString() }}</p>
             </div>
         </div>
