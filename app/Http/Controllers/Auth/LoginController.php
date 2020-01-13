@@ -87,7 +87,6 @@ class LoginController extends Controller
     private function oauthLogin($user, $type)
     {
         $userExists = User::where('email', '=', $user->email)->first();
-
         if (!$userExists) {
             $newUser = User::create([
                 'name' => $user->name,
@@ -97,6 +96,10 @@ class LoginController extends Controller
                 'email_verified_at' => now(),
                 'auth_type' => $type
             ]);
+            if ($type == 'github') {
+                $newUser->avatar_url = $user->avatar;
+                $newUser->save();
+            }
             Auth::login($newUser);
         } else {
             if ($userExists->auth_type != $type) {

@@ -52,7 +52,8 @@
             @endif
             <img
               class="rounded-full w-10 h-10 border-2 border-transparent group-hover:border-indigo-400 ignore-body-click"
-              src="{{ auth()->user()->photo }}" alt="avatar">
+              src="@if(auth()->user()->auth_type == 'email'){{ auth()->user()->photo }}@else{{ auth()->user()->avatar_url }}@endif"
+              alt="avatar">
           </a>
           <div id="usermenu"
             class="absolute lg:mt-12 pt-1 z-40 left-0 lg:left-auto lg:right-0 lg:top-0 invisible lg:w-auto w-full">
